@@ -5,7 +5,7 @@ import createFile from "./modules/fileOperations/createFile.mjs";
 import renameFile from "./modules/fileOperations/renameFile.mjs";
 import copy from "./modules/fileOperations/copy.mjs";
 import moveFile from "./modules/fileOperations/moveFile.mjs";
-import deleteFile from "./modules/fileOperations/deleteFile.js";
+import deleteFile from "./modules/fileOperations/deleteFile.mjs";
 import compressFile from "./modules/compressing/compressFile.mjs";
 import decompressFile from "./modules/compressing/decompressFile.mjs";
 import getOSInfo from "./modules/os/getOSInfo.mjs";
