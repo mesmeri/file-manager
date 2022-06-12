@@ -9,6 +9,7 @@ import deleteFile from "./modules/fileOperations/deleteFile.js";
 import compressFile from "./modules/compressing/compressFile.mjs";
 import decompressFile from "./modules/compressing/decompressFile.mjs";
 import getOSInfo from "./modules/os/getOSInfo.mjs";
+import calculateHash from "./modules/hash/calculateHash.mjs";
 
 const handleUserInput = async (command, args) => {
   switch (command) {
@@ -54,11 +55,11 @@ const handleUserInput = async (command, args) => {
       break;
     }
     case "os": {
-      try {
-        getOSInfo(args[0].slice(2));
-      } catch (err) {
-        console.log(err);
-      }
+      getOSInfo(args[0].slice(2));
+      break;
+    }
+    case "hash": {
+      await calculateHash(args[0]);
       break;
     }
     default:
