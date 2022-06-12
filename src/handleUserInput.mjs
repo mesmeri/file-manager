@@ -6,6 +6,8 @@ import renameFile from "./modules/fileOperations/renameFile.mjs";
 import copy from "./modules/fileOperations/copy.mjs";
 import moveFile from "./modules/fileOperations/moveFile.mjs";
 import deleteFile from "./modules/fileOperations/deleteFile.js";
+import compressFile from "./modules/compressing/compressFile.mjs";
+import decompressFile from "./modules/compressing/decompressFile.mjs";
 
 const handleUserInput = async (command, args) => {
   switch (command) {
@@ -37,6 +39,12 @@ const handleUserInput = async (command, args) => {
     }
     case "rm": {
       await deleteFile(args[0]);
+    }
+    case "compress": {
+      await compressFile(args[0], args[1]);
+    }
+    case "decompress": {
+      await decompressFile(args[0], args[1]);
     }
     default:
   }
