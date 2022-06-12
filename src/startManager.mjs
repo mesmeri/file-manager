@@ -1,9 +1,13 @@
 import { Transform, pipeline } from "stream";
 import setUsernameFromUserInput from "./helpers/setUsernameFromUserInput.mjs";
+import parseUserInput from "./helpers/parseUserInput.mjs";
+import validateUserInput from "./helpers/validateUserInput.mjs";
+import handleUserInput from "./handleUserInput.mjs";
 import {
   printCurrentDirectory,
   printGreeting,
   printGoodbyeMessage,
+  printMessage,
 } from "./helpers/printUtils.mjs";
 
 const startManager = () => {
@@ -12,7 +16,16 @@ const startManager = () => {
   const transformStream = new Transform({
     transform(chunk, encoding, callback) {
       const userInput = chunk.toString("utf8").replace("\n", "");
-      const command = userInput;
+      const [command, args] = parseUserInput(userInput);
+      const isValidInput = validateUserInput(command, args);
+
+      if (!isValidInput) printMessage("Invalid input");
+
+      try {
+        handleUserInput(command, args);
+      } catch {
+        printMessage("Operation failed");
+      }
 
       printCurrentDirectory();
       callback();
