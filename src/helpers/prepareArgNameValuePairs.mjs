@@ -1,16 +1,8 @@
 const prepareArgNameValuePairs = (args) => {
-  const result = args.reduce((acc, arg, ind) => {
+  const result = args.reduce((acc, arg) => {
     if (arg.startsWith("--")) {
-      const argName = arg.slice(2);
-      const argValueCandidate = args[ind + 1];
-      let argValue;
-
-      if (argValueCandidate && !argValueCandidate.startsWith("--")) {
-        argValue = argValueCandidate;
-      } else {
-        argValue = true;
-      }
-
+      const slicedArg = arg.slice(2);
+      const [argName, argValue] = slicedArg.split("=");
       acc[argName] = argValue;
     }
     return acc;
