@@ -2,6 +2,7 @@ const availableCommands = ["up"];
 
 const validateUserInput = (command, args) => {
   switch (command) {
+    case ".exit":
     case "up":
     case "ls": {
       if (args.length === 0) return true;

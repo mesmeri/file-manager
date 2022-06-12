@@ -10,6 +10,7 @@ import compressFile from "./modules/compressing/compressFile.mjs";
 import decompressFile from "./modules/compressing/decompressFile.mjs";
 import getOSInfo from "./modules/os/getOSInfo.mjs";
 import calculateHash from "./modules/hash/calculateHash.mjs";
+import closeManager from "./closeManager.mjs";
 
 const handleUserInput = async (command, args) => {
   switch (command) {
@@ -60,6 +61,10 @@ const handleUserInput = async (command, args) => {
     }
     case "hash": {
       await calculateHash(args[0]);
+      break;
+    }
+    case ".exit": {
+      closeManager();
       break;
     }
     default:

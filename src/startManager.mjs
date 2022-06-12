@@ -3,6 +3,7 @@ import setUsernameFromUserInput from "./helpers/setUsernameFromUserInput.mjs";
 import parseUserInput from "./helpers/parseUserInput.mjs";
 import validateUserInput from "./helpers/validateUserInput.mjs";
 import handleUserInput from "./handleUserInput.mjs";
+import closeManager from "./closeManager.mjs";
 import {
   printCurrentDirectory,
   printGreeting,
@@ -38,10 +39,7 @@ const startManager = () => {
   printGreeting();
   printCurrentDirectory();
 
-  process.on("SIGINT", () => {
-    printGoodbyeMessage();
-    process.exit(0);
-  });
+  process.on("SIGINT", () => closeManager());
 
   pipeline(readStream, transformStream, writeStream, (err) => {
     if (err) {
