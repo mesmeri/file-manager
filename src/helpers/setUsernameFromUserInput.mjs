@@ -1,5 +1,5 @@
 import prepareArgNameValuePairs from "./prepareArgNameValuePairs.mjs";
-import { setConfigFieldValue } from "../config.mjs";
+import { setConfigFieldValue } from "../modules/configs/config.mjs";
 
 const setUsernameFromUserInput = () => {
   const args = process.argv.slice(2);

@@ -1,4 +1,4 @@
-import config from "../config.mjs";
+import config from "../modules/configs/config.mjs";
 
 export const printCurrentDirectory = () =>
   process.stdout.write(`You are currently in ${process.cwd()}\n \n`);
