@@ -14,17 +14,19 @@ const startManager = () => {
   const readStream = process.stdin;
   const writeStream = process.stdout;
   const transformStream = new Transform({
-    transform(chunk, encoding, callback) {
+    async transform(chunk, encoding, callback) {
       const userInput = chunk.toString("utf8").replace("\n", "");
       const [command, args] = parseUserInput(userInput);
       const isValidInput = validateUserInput(command, args);
 
-      if (!isValidInput) printMessage("Invalid input");
-
-      try {
-        handleUserInput(command, args);
-      } catch {
-        printMessage("Operation failed");
+      if (!isValidInput) {
+        printMessage("Invalid input \n");
+      } else {
+        try {
+          await handleUserInput(command, args);
+        } catch {
+          printMessage("Operation failed \n");
+        }
       }
 
       printCurrentDirectory();

@@ -1,12 +1,13 @@
 import { promises } from "fs";
+import checkPathExists from "../common/helpers/checkPathExists.mjs";
 
-const { access, readdir } = promises;
+const { readdir } = promises;
 
 const listFiles = async () => {
-  const filesDirPath = process.cwd();
+  const dirPath = process.cwd();
 
-  await access(filesDirPath);
-  const fileNames = await readdir(filesDirPath);
+  checkPathExists(dirPath);
+  const fileNames = await readdir(dirPath);
 
   console.log(fileNames);
   console.log("\n");
